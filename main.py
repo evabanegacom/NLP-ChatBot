@@ -3,11 +3,13 @@ import warnings
 import nltk
 import string
 import random 
-from ontology_dc8f06af066e4a7880a5938933236037.simple_text import SimpleText
+#from ontology_dc8f06af066e4a7880a5938933236037.simple_text import SimpleText
 
-from openfabric_pysdk.context import OpenfabricExecutionRay
-from openfabric_pysdk.loader import ConfigClass
+#from openfabric_pysdk.context import OpenfabricExecutionRay
+#from openfabric_pysdk.loader import ConfigClass
 from time import time
+
+# nltk.download('omw-1.4')
 
 f=open("chatbot.txt", "r", errors='ignore')
 raw=f.read()
@@ -53,42 +55,42 @@ def response(user_response):
         return robo_response
 
 flag=True
-print("ROBO: My name is Robo. I will answer your queries about Chatbots. If you want to exit, type Bye!")
+print("ROBO: My name is Robot. I will answer your queries about Science. If you want to exit, type Bye!")
 while(flag==True):
     user_response = input()
     user_response=user_response.lower()
     if(user_response!='bye'):
         if(user_response=='thanks' or user_response=='thank you' ):
             flag=False
-            print("ROBO: You are welcome..")
+            print("ROBOT: You are welcome..")
         else:
             if(greeting(user_response)!=None):
-                print("ROBO: "+greeting(user_response))
+                print("ROBOT: "+greeting(user_response))
             else:
-                print("ROBO: ",end="")
+                print("ROBOT: ",end="")
                 print(response(user_response))
                 sent_tokens.remove(user_response)
     else:
         flag=False
-        print("ROBO: Bye! take care..")
+        print("ROBOT: Bye! take care..")
 ############################################################
 # Callback function called on update config
 ############################################################
-def config(configuration: ConfigClass):
-    # TODO Add code here
-    pass
+# def config(configuration: ConfigClass):
+#     # TODO Add code here
+#     pass
 
 
 ############################################################
 # Callback function called on each execution pass
 ############################################################
-def execute(request: SimpleText, ray: OpenfabricExecutionRay) -> SimpleText:
-    output = []
-    for text in request.text:
-        text = text.lower()
+# def execute(request: SimpleText, ray: OpenfabricExecutionRay) -> SimpleText:
+#     output = []
+#     for text in request.text:
+#         text = text.lower()
         
-        # TODO Add code here
-        response = ''
-        output.append(response)
+#         # TODO Add code here
+#         response = ''
+#         output.append(response)
 
-    return SimpleText(dict(text=output))
+#     return SimpleText(dict(text=output))
