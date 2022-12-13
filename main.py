@@ -29,7 +29,7 @@ def LemNormalize(text):
 Greetings_Input = ("hello", "hi", "greetings", "sup", "what's up","hey",)
 Greetings_Response = ["hi", "hey", "nods", "hi there", "hello", "I am glad! You are talking to me"]
 
-def greeting(sentence):
+def config(sentence):
     for word in sentence.split():
         if word.lower() in Greetings_Input:
             return random.choice(Greetings_Response)
@@ -37,7 +37,7 @@ def greeting(sentence):
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
-def response(user_response):
+def execute(user_response):
     robo_response=''
     sent_tokens.append(user_response)
     TfidfVec = TfidfVectorizer(tokenizer=LemNormalize, stop_words='english')
@@ -64,33 +64,12 @@ while(flag==True):
             flag=False
             print("ROBOT: You are welcome..")
         else:
-            if(greeting(user_response)!=None):
-                print("ROBOT: "+greeting(user_response))
+            if(config(user_response)!=None):
+                print("ROBOT: "+config(user_response))
             else:
                 print("ROBOT: ",end="")
-                print(response(user_response))
+                print(execute(user_response))
                 sent_tokens.remove(user_response)
     else:
         flag=False
         print("ROBOT: Bye! take care..")
-############################################################
-# Callback function called on update config
-############################################################
-# def config(configuration: ConfigClass):
-#     # TODO Add code here
-#     pass
-
-
-############################################################
-# Callback function called on each execution pass
-############################################################
-# def execute(request: SimpleText, ray: OpenfabricExecutionRay) -> SimpleText:
-#     output = []
-#     for text in request.text:
-#         text = text.lower()
-        
-#         # TODO Add code here
-#         response = ''
-#         output.append(response)
-
-#     return SimpleText(dict(text=output))
